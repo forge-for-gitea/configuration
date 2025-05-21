@@ -1,0 +1,9 @@
+.idea
+.metadata
+.plugins
+.settings
+.vscode
+.vs
+vendor/
+composer.lock
+phpunit.xml

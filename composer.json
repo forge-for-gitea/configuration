@@ -1,0 +1,72 @@
+{
+    "name": "forge-for-gitea/configuration",
+    "description": "Configuration wrapper for ForgeForGitea workflows and actions",
+    "type": "library",
+    "require": {
+        "php": "^8.3",
+        "symfony/config": "^7.2",
+        "symfony/yaml": "^7.2"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.45",
+        "friendsofphp/php-cs-fixer": "^3.75",
+        "icanhazstring/composer-unused": "^0.9",
+        "infection/infection": "^0.29",
+        "maglnet/composer-require-checker": "^4.16",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.1",
+        "phpyh/coding-standard": "^2.6",
+        "psalm/plugin-phpunit": "^0.19",
+        "rector/rector": "^2.0",
+        "symfony/var-dumper": "^7.2",
+        "vimeo/psalm": "^6.10"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ForgeForGitea\\Configuration\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true
+        },
+        "sort-packages": true,
+        "sort-scripts": false
+    },
+    "scripts": {
+        "infection": "infection --threads=max --show-mutations",
+        "normalize": "composer normalize --dry-run --diff --ansi",
+        "php-cs-fixer": "php-cs-fixer fix --diff --verbose",
+        "phpstan": "phpstan analyse --verbose",
+        "phpunit": "phpunit --colors=always --order-by=random",
+        "psalm": "psalm --show-info=true --no-diff",
+        "rector": "rector process",
+        "require-checker": "composer-require-checker check --config-file=composer-require-checker.json composer.json",
+        "tests": [
+            "@validate",
+            "@normalize",
+            "@require-checker",
+            "@unused",
+            "composer php-cs-fixer -- --dry-run --diff --format=checkstyle --ansi",
+            "composer rector -- --dry-run",
+            "composer psalm -- --stats --shepherd",
+            "@phpstan",
+            "@phpunit",
+            "@infection"
+        ],
+        "unused": "composer-unused --excludePackage=ext-curl",
+        "validate": "composer validate --strict --ansi"
+    },
+    "authors": [
+        {
+            "name": "rosven9856"
+        }
+    ]
+}
