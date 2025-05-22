@@ -1,0 +1,80 @@
+{
+    "name": "forge-for-gitea/configuration",
+    "description": "Configuration wrapper for ForgeForGitea workflows and actions",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "rosven9856"
+        },
+        {
+            "name": "Forge for Gitea",
+            "homepage": "https://github.com/forge-for-gitea/configuration/graphs/contributors"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "symfony/config": "^7.2",
+        "symfony/yaml": "^7.2"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.45",
+        "friendsofphp/php-cs-fixer": "^3.75",
+        "icanhazstring/composer-unused": "^0.9",
+        "infection/infection": "^0.29",
+        "maglnet/composer-require-checker": "^4.16",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.1",
+        "phpyh/coding-standard": "^2.6",
+        "psalm/plugin-phpunit": "^0.19",
+        "rector/rector": "^2.0",
+        "symfony/var-dumper": "^7.2",
+        "vimeo/psalm": "^6.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "ForgeForGitea\\Configuration\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true
+        },
+        "sort-packages": true,
+        "sort-scripts": false
+    },
+    "scripts": {
+        "composer-normalize": "composer normalize --diff --ansi",
+        "linter": "php-cs-fixer fix --diff --verbose --format=checkstyle --ansi",
+        "psalm-static-analysis": "psalm --show-info=true --no-diff --stats",
+        "refactoring": "rector process",
+        "test:composer-normalize": "composer normalize --dry-run --diff --ansi",
+        "test:composer-require-checker": "composer-require-checker check --config-file=composer-require-checker.json composer.json",
+        "test:composer-unused": "composer-unused --excludePackage=ext-curl",
+        "test:composer-validate": "composer validate --strict --ansi",
+        "test:linter": "php-cs-fixer fix --dry-run --diff --verbose --format=checkstyle --ansi",
+        "test:mutation-tests": "infection --threads=max --show-mutations",
+        "test:phpstan-static-analysis": "phpstan analyse --verbose",
+        "test:psalm-static-analysis": "psalm --show-info=true --no-diff --stats",
+        "test:refactoring": "rector process --dry-run",
+        "test:unit-tests": "phpunit --colors=always --order-by=random",
+        "tests": [
+            "@test:composer-validate",
+            "@test:composer-normalize",
+            "@test:composer-require-checker",
+            "@test:composer-unused",
+            "@test:linter",
+            "@test:refactoring",
+            "@test:psalm-static-analysis",
+            "@test:phpstan-static-analysis",
+            "@test:unit-tests",
+            "@test:mutation-tests"
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+*                 text=auto
+
+CHANGELOG         text
+CONTRIBUTING      text
+COPYING           text
+LICENSE           text
+.editorconfig     text
+.gitattributes    text
+
+.gitignore        text
+composer.json     text eol=lf
+*.md              text diff=markdown
+*.php             text diff=php
+*.yml             text
+*.json            text
