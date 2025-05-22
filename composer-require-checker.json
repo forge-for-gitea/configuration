@@ -2,11 +2,15 @@
     "symbol-whitelist" : [],
     "php-core-extensions" : [
         "Core",
-        "SPL",
-        "standard",
-        "filter",
         "date",
-        "fileinfo"
+        "json",
+        "hash",
+        "pcre",
+        "Phar",
+        "Reflection",
+        "SPL",
+        "random",
+        "standard"
     ],
     "scan-files" : []
 }
