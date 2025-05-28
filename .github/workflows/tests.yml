@@ -17,8 +17,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -33,8 +31,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -52,8 +48,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -71,8 +65,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -90,8 +82,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -109,8 +99,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -128,8 +116,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -147,8 +133,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -166,8 +150,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -186,8 +168,6 @@ jobs:
           - 8.3
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{env.BRANCH}}
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
