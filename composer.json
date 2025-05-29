@@ -54,6 +54,7 @@
         "linter": "php-cs-fixer fix --diff --verbose --format=checkstyle --ansi",
         "psalm-static-analysis": "psalm --show-info=true --no-diff --stats",
         "refactoring": "rector process",
+        "test:composer-audit": "composer audit --ansi",
         "test:composer-normalize": "composer normalize --dry-run --diff --ansi",
         "test:composer-require-checker": "composer-require-checker check --config-file=composer-require-checker.json composer.json",
         "test:composer-unused": "composer-unused --excludePackage=ext-curl",
@@ -67,6 +68,7 @@
         "tests": [
             "@test:composer-validate",
             "@test:composer-normalize",
+            "@test:composer-audit",
             "@test:composer-require-checker",
             "@test:composer-unused",
             "@test:linter",

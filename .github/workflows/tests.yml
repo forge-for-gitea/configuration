@@ -40,6 +40,23 @@ jobs:
         with:
           composer-options: --optimize-autoloader
       - run: composer test:composer-normalize
+  composer-audit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v3
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:composer-audit
   composer-require-checker:
     runs-on: ubuntu-latest
     strategy:
