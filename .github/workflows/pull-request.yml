@@ -9,7 +9,7 @@ on:
       - synchronize
 
 jobs:
-  linter:
+  title-linter:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
