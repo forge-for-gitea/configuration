@@ -1,0 +1,71 @@
+name: release
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'master'
+      - 'v*.*'
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'docs/**'
+      - '.github/**'
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: download npm files
+        run: |
+          curl -L https://raw.githubusercontent.com/forge-for-gitea/semantic-release-template/refs/heads/main/package.json > package.json
+          curl -L https://raw.githubusercontent.com/forge-for-gitea/semantic-release-template/refs/heads/main/package-lock.json > package-lock.json
+      - name: copy config files
+        run: |
+          cp .github/semantic-release/.releaserc.yaml .
+      - uses: cycjimmy/semantic-release-action@v4
+        id: semantic-release
+        with:
+          dry_run: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: editing CHANGELOG.md
+        if: steps.semantic-release.outputs.new_release_published == 'true'
+        run: |
+          echo "${{ steps.semantic-release.outputs.new_release_notes }}" >> CHANGELOG.md
+      - run: git status
+        if: steps.semantic-release.outputs.new_release_published == 'true'
+      - name: commit and push
+        if: steps.semantic-release.outputs.new_release_published == 'true'
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add CHANGELOG.md
+          git commit -m "docs(changelog): auto-update CHANGELOG.md"
+          git push
+  release:
+    needs:
+      - update-changelog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: git fetch && git pull
+      - name: download npm files
+        run: |
+          curl -L https://raw.githubusercontent.com/forge-for-gitea/semantic-release-template/refs/heads/main/package.json > package.json
+          curl -L https://raw.githubusercontent.com/forge-for-gitea/semantic-release-template/refs/heads/main/package-lock.json > package-lock.json
+      - name: copy config files
+        run: |
+          cp .github/semantic-release/.releaserc.yaml .
+      - uses: cycjimmy/semantic-release-action@v4
+        id: semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
