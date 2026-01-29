@@ -56,7 +56,7 @@
         "refactoring": "rector process",
         "test:composer-normalize": "composer normalize --dry-run --diff --ansi",
         "test:composer-require-checker": "composer-require-checker check --config-file=composer-require-checker.json composer.json",
-        "test:composer-unused": "composer-unused --excludePackage=ext-curl",
+        "test:composer-unused": "composer-unused --excludePackage=symfony/yaml",
         "test:composer-validate": "composer validate --strict --ansi",
         "test:linter": "php-cs-fixer fix --dry-run --diff --verbose --format=checkstyle --ansi",
         "test:mutation-tests": "infection --threads=max --show-mutations",
