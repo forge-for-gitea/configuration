@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace ForgeForGitea\Configuration;
 
+use ForgeForGitea\Configuration\Reader\Reader;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Processor;
 
 final class Configuration
 {
     private readonly array $parameters;
-
-    private readonly ConfigurationInterface $configurationAdapter;
-
     private array $validatedParameters;
 
-    public function __construct(private readonly ConfigurationInterface $configurationAdapter, private readonly array $parameters)
+    public function __construct(private readonly ConfigurationInterface $configurationAdapter, Reader $reader)
     {
         $this->validatedParameters = [];
+
+        $this->parameters = $reader->read();
     }
 
     public function getConfigurationAdapter(): ConfigurationInterface
