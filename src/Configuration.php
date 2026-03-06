@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ForgeForGitea\Configuration;
 
 use ForgeForGitea\Configuration\Reader\Reader;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
+use ForgeForGitea\Configuration\Schema\Schema;
 use Symfony\Component\Config\Definition\Processor;
 
 final class Configuration
@@ -13,16 +13,16 @@ final class Configuration
     private readonly array $parameters;
     private array $validatedParameters;
 
-    public function __construct(private readonly ConfigurationInterface $configurationAdapter, Reader $reader)
+    public function __construct(private readonly Schema $schema, Reader $reader)
     {
         $this->validatedParameters = [];
 
         $this->parameters = $reader->read();
     }
 
-    public function getConfigurationAdapter(): ConfigurationInterface
+    public function getSchema(): Schema
     {
-        return $this->configurationAdapter;
+        return $this->schema;
     }
 
     public function getParameters(): array
@@ -39,7 +39,7 @@ final class Configuration
     {
         $processor = new Processor();
         $this->validatedParameters = $processor->processConfiguration(
-            $this->getConfigurationAdapter(),
+            $this->getSchema(),
             [$this->getParameters()],
         );
 

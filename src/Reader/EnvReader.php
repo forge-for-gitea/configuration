@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ForgeForGitea\Configuration\Reader;
 
-class EnvReader
+class EnvReader implements Reader
 {
     public function __construct() {}
 
