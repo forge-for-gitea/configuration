@@ -8,6 +8,9 @@ use ForgeForGitea\Configuration\Exception\Reader\FileNotFoundException;
 use ForgeForGitea\Configuration\Exception\Reader\FilePermissionDeniedException;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * @psalm-api
+ */
 final readonly class YamlReader implements Reader
 {
     private \SplFileInfo $file;

@@ -5,22 +5,23 @@ declare(strict_types=1);
 namespace ForgeForGitea\Configuration;
 
 use ForgeForGitea\Configuration\Reader\Reader;
-use ForgeForGitea\Configuration\Schema\Schema;
+use ForgeForGitea\Configuration\Schema\SchemaWrapper;
 use Symfony\Component\Config\Definition\Processor;
 
 final class Configuration
 {
     private readonly array $parameters;
+
     private array $validatedParameters;
 
-    public function __construct(private readonly Schema $schema, Reader $reader)
+    public function __construct(private readonly SchemaWrapper $schema, Reader $reader)
     {
         $this->validatedParameters = [];
 
         $this->parameters = $reader->read();
     }
 
-    public function getSchema(): Schema
+    public function getSchemaWrapper(): SchemaWrapper
     {
         return $this->schema;
     }
@@ -35,11 +36,14 @@ final class Configuration
         return $this->validatedParameters;
     }
 
+    /**
+     * @psalm-api
+     */
     public function validate(): array
     {
         $processor = new Processor();
         $this->validatedParameters = $processor->processConfiguration(
-            $this->getSchema(),
+            $this->getSchemaWrapper(),
             [$this->getParameters()],
         );
 

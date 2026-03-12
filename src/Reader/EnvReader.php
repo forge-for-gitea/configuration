@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace ForgeForGitea\Configuration\Reader;
 
-class EnvReader implements Reader
+final readonly class EnvReader implements Reader
 {
     public function __construct() {}
 
-    /**
-     * @return []
-     */
+    #[\Override]
     public function read(): array
     {
         return $_ENV;

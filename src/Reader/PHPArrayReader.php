@@ -8,9 +8,7 @@ final readonly class PHPArrayReader implements Reader
 {
     public function __construct(private readonly array $array) {}
 
-    /**
-     * @return []
-     */
+    #[\Override]
     public function read(): array
     {
         return $this->array;
