@@ -5,30 +5,73 @@ declare(strict_types=1);
 namespace ForgeForGitea\Configuration;
 
 use ForgeForGitea\Configuration\Reader\PHPArrayReader;
+use ForgeForGitea\Configuration\Schema\SchemaWrapper;
 use PHPUnit\Framework\Attributes\CoversClass;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\ConfigurationInterface;
+use PHPUnit\Framework\TestCase;
 
 #[CoversClass(Configuration::class)]
-final class ConfigurationTest
+final class ConfigurationTest extends TestCase
 {
-    public function testCreateConfiguration(): void
+    private SchemaWrapper $schema;
+
+    #[\Override]
+    protected function setUp(): void
     {
-        $configuration = null;
+        $this->schema = new SchemaWrapper();
+    }
 
-        try {
+    public function testGetSchemaWrapperReturnsSchemaPassedToConstructor(): void
+    {
+        $configuration = new Configuration($this->schema, new PHPArrayReader([]));
 
-            $configurationAdapter = new class implements ConfigurationInterface {
-                public function getConfigTreeBuilder(): TreeBuilder
-                {
-                    return new TreeBuilder('parameters');
-                }
-            };
+        self::assertSame($this->schema, $configuration->getSchemaWrapper());
+    }
 
-            $configuration = new Configuration($configurationAdapter, new PHPArrayReader([]));
+    public function testGetParametersReturnsArrayFromReader(): void
+    {
+        $parameters = ['key' => 'value', 'another' => 42];
+        $configuration = new Configuration($this->schema, new PHPArrayReader($parameters));
 
-        } catch (\Exception) {}
+        self::assertSame($parameters, $configuration->getParameters());
+    }
 
-        self::assertNotNull($configuration);
+    public function testGetParametersReturnsEmptyArrayWhenReaderProvidesNone(): void
+    {
+        $configuration = new Configuration($this->schema, new PHPArrayReader([]));
+
+        self::assertSame([], $configuration->getParameters());
+    }
+
+    public function testGetValidatedParametersIsEmptyBeforeValidation(): void
+    {
+        $configuration = new Configuration($this->schema, new PHPArrayReader(['key' => 'value']));
+
+        self::assertSame([], $configuration->getValidatedParameters());
+    }
+
+    public function testValidateReturnsProcessedParameters(): void
+    {
+        $configuration = new Configuration($this->schema, new PHPArrayReader([]));
+
+        $result = $configuration->validate();
+
+        /** @psalm-suppress RedundantCondition */
+        self::assertIsArray($result);
+    }
+
+    public function testGetValidatedParametersAfterValidationReturnsProcessedResult(): void
+    {
+        $configuration = new Configuration($this->schema, new PHPArrayReader([]));
+        $validated = $configuration->validate();
+
+        self::assertSame($validated, $configuration->getValidatedParameters());
+    }
+
+    public function testValidateReturnsSameReferenceAsGetValidatedParameters(): void
+    {
+        $configuration = new Configuration($this->schema, new PHPArrayReader([]));
+        $result = $configuration->validate();
+
+        self::assertSame($result, $configuration->getValidatedParameters());
     }
 }
