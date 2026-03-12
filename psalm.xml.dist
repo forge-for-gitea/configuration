@@ -40,6 +40,7 @@
         <classAndDescendants name="ReflectionException"/>
     </ignoreExceptions>
 
+    <!--
     <issueHandlers>
         <MissingThrowsDocblock>
             <errorLevel type="suppress">
@@ -58,6 +59,7 @@
             </errorLevel>
         </UnusedMethodCall>
     </issueHandlers>
+    -->
 
     <forbiddenFunctions>
         <function name="dd"/>
