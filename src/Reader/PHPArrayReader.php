@@ -6,6 +6,9 @@ namespace ForgeForGitea\Configuration\Reader;
 
 final readonly class PHPArrayReader implements Reader
 {
+    /**
+     * @param array|mixed[] $array
+     */
     public function __construct(private readonly array $array) {}
 
     #[\Override]

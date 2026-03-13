@@ -10,8 +10,14 @@ use Symfony\Component\Config\Definition\Processor;
 
 final class Configuration
 {
+    /**
+     * @var array|mixed[]
+     */
     private readonly array $parameters;
 
+    /**
+     * @var array|mixed[]
+     */
     private array $validatedParameters;
 
     public function __construct(private readonly SchemaWrapper $schema, Reader $reader)
@@ -26,11 +32,17 @@ final class Configuration
         return $this->schema;
     }
 
+    /**
+     * @return array|mixed[]
+     */
     public function getParameters(): array
     {
         return $this->parameters;
     }
 
+    /**
+     * @return array|mixed[]
+     */
     public function getValidatedParameters(): array
     {
         return $this->validatedParameters;
@@ -38,6 +50,7 @@ final class Configuration
 
     /**
      * @psalm-api
+     * @return array|mixed[]
      */
     public function validate(): array
     {

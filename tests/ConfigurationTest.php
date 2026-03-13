@@ -55,7 +55,10 @@ final class ConfigurationTest extends TestCase
 
         $result = $configuration->validate();
 
-        /** @psalm-suppress RedundantCondition */
+        /**
+         * @psalm-suppress RedundantCondition
+         * @phpstan-ignore staticMethod.alreadyNarrowedType
+         */
         self::assertIsArray($result);
     }
 

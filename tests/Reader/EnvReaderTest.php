@@ -28,7 +28,10 @@ final class EnvReaderTest extends TestCase
     {
         $reader = new EnvReader();
 
-        /** @psalm-suppress RedundantCondition */
+        /**
+         * @psalm-suppress RedundantCondition
+         * @phpstan-ignore staticMethod.alreadyNarrowedType
+         */
         self::assertIsArray($reader->read());
     }
 
