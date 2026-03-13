@@ -306,7 +306,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: composer:v2
-          coverage: none
+          coverage: pcov
       - uses: actions/cache@v4
         with:
           path: ~/.composer/cache
