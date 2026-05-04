@@ -189,7 +189,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: composer:v2
-          coverage: none
+          coverage: pcov
       - uses: ramsey/composer-install@v3
         with:
           composer-options: --optimize-autoloader
