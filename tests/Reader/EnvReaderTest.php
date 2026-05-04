@@ -11,17 +11,20 @@ use PHPUnit\Framework\TestCase;
 final class EnvReaderTest extends TestCase
 {
     private const string TEST_ENV_KEY = 'PHPUNIT_ENV_READER_TEST_KEY';
+    private const string TEST_ENV_KEY2 = 'PHPUNIT_ENV_READER_TEST_KEY2';
 
     #[\Override]
     protected function setUp(): void
     {
         $_ENV[self::TEST_ENV_KEY] = 'test_value';
+        $_ENV[self::TEST_ENV_KEY2] = 'test_value2';
     }
 
     #[\Override]
     protected function tearDown(): void
     {
-        unset($_ENV[self::TEST_ENV_KEY]);
+        unset($_ENV[self::TEST_ENV_KEY], $_ENV[self::TEST_ENV_KEY2]);
+
     }
 
     public function testReadIsAnArray(): void
@@ -33,6 +36,13 @@ final class EnvReaderTest extends TestCase
          * @phpstan-ignore staticMethod.alreadyNarrowedType
          */
         self::assertIsArray($reader->read());
+    }
+
+    public function testReadReturnsCount(): void
+    {
+        $reader = new EnvReader();
+
+        self::assertCount(\count($_ENV), $reader->read());
     }
 
     public function testReadReturnsEnvSuperGlobal(): void
