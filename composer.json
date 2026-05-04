@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "symfony/config": "^7.2",
         "symfony/yaml": "^7.2"
     },
@@ -54,7 +54,7 @@
         "linter": "php-cs-fixer fix --diff --verbose --format=checkstyle --ansi",
         "psalm-static-analysis": "psalm --show-info=true --no-diff --stats",
         "refactoring": "rector process",
-        "test:composer-audit": "composer audit --ansi",
+        "test:composer-audit": "composer audit --ansi --abandoned=ignore",
         "test:composer-normalize": "composer normalize --dry-run --diff --ansi",
         "test:composer-require-checker": "composer-require-checker check --config-file=composer-require-checker.json composer.json",
         "test:composer-unused": "composer-unused",
