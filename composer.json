@@ -13,22 +13,21 @@
         }
     ],
     "require": {
-        "php": "^8.3",
-        "symfony/config": "^7.2",
-        "symfony/yaml": "^7.2"
+        "php": "^8.4",
+        "symfony/config": "^7.4",
+        "symfony/yaml": "^7.4"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.45",
-        "friendsofphp/php-cs-fixer": "^3.75",
+        "ergebnis/composer-normalize": "^2.50",
+        "friendsofphp/php-cs-fixer": "^3.95",
         "icanhazstring/composer-unused": "^0.9",
         "infection/infection": "^0.29",
-        "maglnet/composer-require-checker": "^4.16",
+        "maglnet/composer-require-checker": "^4.20",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^12.1",
-        "phpyh/coding-standard": "^2.6",
         "psalm/plugin-phpunit": "^0.19",
-        "rector/rector": "^2.0",
-        "symfony/var-dumper": "^7.2",
+        "rector/rector": "^2.4",
+        "symfony/var-dumper": "^7.4",
         "vimeo/psalm": "^6.10"
     },
     "autoload": {
@@ -54,7 +53,7 @@
         "linter": "php-cs-fixer fix --diff --verbose --format=checkstyle --ansi",
         "psalm-static-analysis": "psalm --show-info=true --no-diff --stats",
         "refactoring": "rector process",
-        "test:composer-audit": "composer audit --ansi",
+        "test:composer-audit": "composer audit --ansi --abandoned=ignore",
         "test:composer-normalize": "composer normalize --dry-run --diff --ansi",
         "test:composer-require-checker": "composer-require-checker check --config-file=composer-require-checker.json composer.json",
         "test:composer-unused": "composer-unused",
