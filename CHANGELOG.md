@@ -1,3 +1,11 @@
+## [0.2.2](https://github.com/forge-for-gitea/configuration/compare/v0.2.1...v0.2.2) (2026-05-27)
+
+### Dependency Updates
+
+* **deps:** bump actions/checkout from 4 to 6 ([0bd3066](https://github.com/forge-for-gitea/configuration/commit/0bd3066130c84134705baaa460b3ce1a92273b49))
+* **deps:** bump ramsey/composer-install from 3 to 4 ([4494a1a](https://github.com/forge-for-gitea/configuration/commit/4494a1a8f5fbee58c186fddfcb4129b26a15a8a3))
+* **deps:** update symfony/yaml requirement from ^7.4 to ^7.4 || ^8.0 ([0641f39](https://github.com/forge-for-gitea/configuration/commit/0641f3957575dff8bcd19579e2e2490e531b740b))
+
 ## [0.2.1](https://github.com/forge-for-gitea/configuration/compare/v0.2.0...v0.2.1) (2026-05-27)
 
 ### Dependency Updates
