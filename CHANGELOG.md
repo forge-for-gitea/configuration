@@ -1,3 +1,9 @@
+## [0.2.3](https://github.com/forge-for-gitea/configuration/compare/v0.2.2...v0.2.3) (2026-05-27)
+
+### Dependency Updates
+
+* **deps:** update symfony/config requirement from ^7.4 to ^7.4 || ^8.0 ([5e2dfb4](https://github.com/forge-for-gitea/configuration/commit/5e2dfb4c433e6fd7f3e01350c40f5ac43f0150f6))
+
 ## [0.2.2](https://github.com/forge-for-gitea/configuration/compare/v0.2.1...v0.2.2) (2026-05-27)
 
 ### Dependency Updates
