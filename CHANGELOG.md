@@ -1,3 +1,15 @@
+## [0.2.1](https://github.com/forge-for-gitea/configuration/compare/v0.2.0...v0.2.1) (2026-05-27)
+
+### Dependency Updates
+
+* **deps-dev:** update infection/infection requirement || ^0.33 ([f62d0bb](https://github.com/forge-for-gitea/configuration/commit/f62d0bbae567b26c36497951bde1a4f06911bc71))
+* **deps-dev:** update symfony/var-dumper requirement || ^8.0 ([116efe1](https://github.com/forge-for-gitea/configuration/commit/116efe157c5e70206c02a461a6c74b24ca7e2b7e))
+* **deps:** bump amannn/action-semantic-pull-request from 5 to 6 ([dc4ccbf](https://github.com/forge-for-gitea/configuration/commit/dc4ccbf22f485f2f33f2ed19f7389c58263bdc35))
+* **deps:** bump cycjimmy/semantic-release-action from 4 to 6 ([fac0880](https://github.com/forge-for-gitea/configuration/commit/fac088034f92311de15d7feefded34226bd3d582))
+* **deps:** bump to php 8.4 ([f6681a8](https://github.com/forge-for-gitea/configuration/commit/f6681a819d2945ccf2e86c21b51359755aadcf65))
+* **deps:** remove  ([559bc0a](https://github.com/forge-for-gitea/configuration/commit/559bc0a46b10b2d8ea77164bea3fc09d41b408ff))
+* **deps:** update composer deps ([08f2fea](https://github.com/forge-for-gitea/configuration/commit/08f2feac5d80d1a45c45b166368f13cdcd5b0eef))
+
 # [0.2.0](https://github.com/forge-for-gitea/configuration/compare/v0.1.0...v0.2.0) (2026-05-04)
 
 

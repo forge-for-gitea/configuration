@@ -36,7 +36,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:composer-normalize
@@ -53,7 +53,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:composer-audit
@@ -70,7 +70,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:composer-require-checker
@@ -87,7 +87,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:composer-unused
@@ -104,7 +104,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2, cs2pr
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:linter | cs2pr
@@ -121,7 +121,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:refactoring
@@ -138,7 +138,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:psalm-static-analysis -- --output-format=github
@@ -155,7 +155,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: none
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:phpstan-static-analysis
@@ -172,7 +172,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: pcov
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       #      - run: composer test -- --colors=always --order-by=random --coverage-clover coverage.xml
@@ -190,7 +190,7 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
           coverage: pcov
-      - uses: ramsey/composer-install@v3
+      - uses: ramsey/composer-install@v4
         with:
           composer-options: --optimize-autoloader
       - run: composer test:mutation-tests
