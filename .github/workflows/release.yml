@@ -3,15 +3,15 @@ name: release
 on:
   push:
     branches:
-      - 'main'
-      - 'master'
-      - 'v*.*'
+      - main
+      - master
+      - v*.*
     paths-ignore:
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - 'docs/**'
-      - '.github/**'
-      - '.gitea/**'
+      - README.md
+      - CHANGELOG.md
+      - docs/**
+      - .github/**
+      - .gitea/**
 
 jobs:
   update-changelog:
