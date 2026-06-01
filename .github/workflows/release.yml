@@ -14,7 +14,248 @@ on:
       - .gitea/**
 
 jobs:
+  composer-validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - run: composer test:composer-validate
+
+  composer-normalize:
+    needs:
+      - composer-validate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:composer-normalize
+
+  composer-audit:
+    needs:
+      - composer-validate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:composer-audit
+
+  composer-require-checker:
+    needs:
+      - composer-validate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:composer-require-checker
+
+  composer-unused:
+    needs:
+      - composer-validate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:composer-unused
+
+  linter:
+    needs:
+      - composer-normalize
+      - composer-audit
+      - composer-require-checker
+      - composer-unused
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2, cs2pr
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:linter | cs2pr
+
+  refactoring:
+    needs:
+      - composer-normalize
+      - composer-audit
+      - composer-require-checker
+      - composer-unused
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:refactoring
+
+  psalm-static-analysis:
+    needs:
+      - composer-normalize
+      - composer-audit
+      - composer-require-checker
+      - composer-unused
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:psalm-static-analysis -- --output-format=github
+
+  phpstan-static-analysis:
+    needs:
+      - composer-normalize
+      - composer-audit
+      - composer-require-checker
+      - composer-unused
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:phpstan-static-analysis
+
+  unit-tests:
+    needs:
+      - composer-normalize
+      - composer-audit
+      - composer-require-checker
+      - composer-unused
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: pcov
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      #      - run: composer test -- --colors=always --order-by=random --coverage-clover coverage.xml
+      - run: composer test:unit-tests
+
+  mutation-tests:
+    needs:
+      - composer-normalize
+      - composer-audit
+      - composer-require-checker
+      - composer-unused
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - 8.4
+    steps:
+      - uses: actions/checkout@v6
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: pcov
+      - uses: ramsey/composer-install@v4
+        with:
+          composer-options: --optimize-autoloader
+      - run: composer test:mutation-tests
+
   update-changelog:
+    needs:
+      - linter
+      - refactoring
+      - psalm-static-analysis
+      - phpstan-static-analysis
+      - unit-tests
+      - mutation-tests
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -76,6 +317,7 @@ jobs:
           git add CHANGELOG.md
           git commit -m "docs(changelog): auto-update CHANGELOG.md"
           git push
+
   release:
     needs:
       - update-changelog

@@ -19,7 +19,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Github. Issue
+            -- Issue --
+            GitHub
 
             Author: ${{ github.actor }}
             Repository: ${{ github.repository }}
