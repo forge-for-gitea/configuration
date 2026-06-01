@@ -4,14 +4,18 @@ name: tests
 on:
   push:
     branches-ignore:
-      - 'main'
-      - 'master'
-      - 'v*.*'
+      - main
+      - master
+      - v*.*
   pull_request:
     branches-ignore:
-      - 'main'
-      - 'master'
-      - 'v*.*'
+      - main
+      - master
+      - v*.*
+    types:
+      - opened
+      - reopened
+      - synchronize
 
 env:
   BRANCH: ${{ github.head_ref || github.ref_name }}
