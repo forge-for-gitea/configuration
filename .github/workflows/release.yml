@@ -11,6 +11,7 @@ on:
       - 'CHANGELOG.md'
       - 'docs/**'
       - '.github/**'
+      - '.gitea/**'
 
 jobs:
   update-changelog:
