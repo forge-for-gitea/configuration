@@ -1,3 +1,9 @@
+## [0.2.4](https://github.com/forge-for-gitea/configuration/compare/v0.2.3...v0.2.4) (2026-06-05)
+
+### Dependency Updates
+
+* **deps-dev:** update phpunit/phpunit requirement || ^13.0 ([60ca661](https://github.com/forge-for-gitea/configuration/commit/60ca661a8002fc78f5ff4005856b86950ba15e7a))
+
 ## [0.2.3](https://github.com/forge-for-gitea/configuration/compare/v0.2.2...v0.2.3) (2026-05-27)
 
 ### Dependency Updates
