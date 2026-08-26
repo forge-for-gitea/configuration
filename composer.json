@@ -21,7 +21,7 @@
         "ergebnis/composer-normalize": "^2.50",
         "friendsofphp/php-cs-fixer": "^3.95",
         "icanhazstring/composer-unused": "^0.9",
-        "infection/infection": "^0.29 || ^0.33 || ^0.34",
+        "infection/infection": "^0.29 || ^0.33 || ^0.34 || ^0.35",
         "maglnet/composer-require-checker": "^4.20",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^12.1 || ^13.0",
